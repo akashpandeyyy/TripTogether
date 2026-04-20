@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<style name="Base.Theme.TT" parent="Theme.Material3.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorPrimaryContainer">@color/primary_container</item>
+    <item name="colorOnPrimary">@color/on_primary</item>
+    <item name="colorSecondary">@color/secondary</item>
+    <item name="colorSecondaryContainer">@color/secondary_container</item>
+    <item name="colorOnSecondary">@color/on_secondary</item>
+    <item name="colorTertiary">@color/tertiary</item>
+    <item name="colorTertiaryContainer">@color/tertiary_container</item>
+    <item name="colorOnTertiary">@color/on_tertiary</item>
+    <item name="colorError">@color/error</item>
+    <item name="colorErrorContainer">@color/error_container</item>
+    <item name="colorOnError">@color/on_error</item>
+    <item name="android:colorBackground">@color/background</item>
+    <item name="colorSurface">@color/surface</item>
+    <item name="colorSurfaceVariant">@color/surface_variant</item>
+    <item name="colorOnSurface">@color/on_surface</item>
+    <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+    <item name="colorOutline">@color/outline</item>
+
+    <!-- Typography -->
+    <item name="textAppearanceHeadline1">@style/TextAppearance.Material3.HeadlineLarge</item>
+    <item name="textAppearanceHeadline2">@style/TextAppearance.Material3.HeadlineMedium</item>
+    <item name="textAppearanceHeadline3">@style/TextAppearance.Material3.HeadlineSmall</item>
+    <item name="textAppearanceBody1">@style/TextAppearance.Material3.BodyLarge</item>
+    <item name="textAppearanceBody2">@style/TextAppearance.Material3.BodyMedium</item>
+
+    <!-- Shape -->
+    <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
+    <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
+    <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
+</style>
+<style name="Theme.TT" parent="Base.Theme.TT" />
+</resources>
