@@ -1,5 +1,6 @@
 package com.example.tt;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,6 +12,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Button btnLogout, btnDelete, btnHome, btnPost;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +21,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         btnLogout = findViewById(R.id.pro_logout);
         btnDelete = findViewById(R.id.pro_del);
-        btnHome = findViewById(R.id.navigation_home);
-        btnPost = findViewById(R.id.navigation_post);
+        btnHome = findViewById(R.id.nav_home);
+        btnPost = findViewById(R.id.nav_post);
 
         btnLogout.setOnClickListener(v -> {
             // Clear session if any
