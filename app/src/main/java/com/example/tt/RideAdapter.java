@@ -1,4 +1,3 @@
-// RideAdapter.java
 package com.example.tt;
 
 import android.content.Context;
@@ -26,7 +25,7 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
 
     public RideAdapter(Context context,
                        ArrayList<RideModel> list,
-                       boolean listener) {
+                       OnBookClickListener listener) {
 
         this.context = context;
         this.list = list;
@@ -53,9 +52,12 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
         holder.destination.setText(ride.getDestination());
         holder.amount.setText("₹" + ride.getAmount());
         holder.seats.setText(ride.getSeats() + " Seats");
-        holder.rating.setText(ride.getRating());
 
-        holder.bookBtn.setOnClickListener(v -> listener.onBookClick(ride));
+        holder.bookBtn.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onBookClick(ride);
+            }
+        });
     }
 
     @Override
@@ -65,7 +67,7 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView userName, source, destination, amount, seats, rating;
+        TextView userName, source, destination, amount, seats;
         MaterialButton bookBtn;
 
         public ViewHolder(@NonNull View itemView) {
@@ -76,7 +78,6 @@ public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
             destination = itemView.findViewById(R.id.trip_destination);
             amount = itemView.findViewById(R.id.trip_amount);
             seats = itemView.findViewById(R.id.trip_seats);
-//            rating = itemView.findViewById(R.id.ratingText);
 
             bookBtn = itemView.findViewById(R.id.btn_book);
         }
