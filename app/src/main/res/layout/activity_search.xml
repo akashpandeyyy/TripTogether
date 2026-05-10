@@ -1,52 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface">
+    android:background="?attr/colorSurface">
+
+    <!-- Top App Bar -->
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/surface"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
         android:elevation="0dp"
-        app:title="Search Results"
-        app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:navigationIconTint="?attr/colorOnSurface"
+        app:title="Available Rides"
+        app:titleTextColor="?attr/colorOnSurface" />
+
+    <!-- Search Summary Card -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchInfoCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="?attr/colorPrimaryContainer"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@drawable/bg_verified"
+                android:padding="10dp"
+                android:src="@drawable/ic_route"
+                app:tint="?attr/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Smart Ride Matching"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Showing rides near your route"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textSize="13sp"
+                    android:alpha="0.8" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- RecyclerView -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sr_result"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="16dp"
+        android:clipToPadding="false"
+        android:paddingStart="20dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/searchInfoCard"
         tools:listitem="@layout/item_ride_result" />
 
-    <TextView
-        android:id="@+id/empty_view"
+    <!-- Empty View -->
+
+    <LinearLayout
+        android:id="@+id/empty_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No rides found"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        android:textColor="@color/on_surface_variant"
+        android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ProgressBar
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:alpha="0.8"
+            android:src="@drawable/ic_search"
+            app:tint="?attr/colorPrimary" />
+
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="No rides found"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Try changing your route or time"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- Loading -->
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:visibility="gone"
+        app:indicatorColor="?attr/colorPrimary"
+        app:indicatorSize="52dp"
+        app:trackThickness="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

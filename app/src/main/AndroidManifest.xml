@@ -13,56 +13,65 @@
         android:theme="@style/Theme.RideSharing"
         tools:targetApi="31">
 
-        <!-- SplashScreen is the LAUNCHER activity -->
+        <!-- Splash Screen -->
         <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.RideSharing.Splash">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
-        <!-- Login/Register choice screen -->
+        <!-- Login/Register -->
         <activity
             android:name=".LoginRegisterActivity"
             android:exported="false"
             android:parentActivityName=".SplashScreen" />
 
-        <!-- Login screen -->
+        <!-- Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:parentActivityName=".LoginRegisterActivity" />
 
-        <!-- Register screen -->
+        <!-- Register -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:parentActivityName=".LoginRegisterActivity" />
 
-        <!-- Main home screen -->
+        <!-- Home -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:parentActivityName=".LoginActivity" />
 
-        <!-- Post a trip screen -->
+        <!-- Post Trip -->
         <activity
             android:name=".PostTripActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
-        <!-- Profile screen -->
+        <!-- Search -->
         <activity
-            android:name=".ProfileActivity"
+            android:name=".SearchActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
-        <!-- Search results screen -->
+        <!-- My Rides -->
         <activity
-            android:name=".SearchActivity"
+            android:name=".MyRidesActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- Profile -->
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 

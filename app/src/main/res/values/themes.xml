@@ -20,6 +20,8 @@
     <item name="colorOnSurface">@color/on_surface</item>
     <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
     <item name="colorOutline">@color/outline</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    <item name="android:windowLightStatusBar">false</item>
 
     <!-- Typography -->
     <item name="textAppearanceHeadline1">@style/TextAppearance.Material3.HeadlineLarge</item>

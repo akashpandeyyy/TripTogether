@@ -1,202 +1,503 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface">
+    android:background="?attr/colorSurface">
+
+    <!-- Top Gradient -->
+
+    <View
+        android:id="@+id/topGradient"
+        android:layout_width="0dp"
+        android:layout_height="260dp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Scroll Content -->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
         android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="24dp">
+            android:paddingHorizontal="22dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="24dp">
+
+            <!-- Header -->
+
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="My Profile"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="#33FFFFFF"
+                    app:strokeWidth="1dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_edit"
+                        app:tint="@android:color/white" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- Profile Card -->
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/profile_header_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="2dp"
+                android:layout_marginTop="26dp"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/headerLayout"
+                app:strokeColor="?attr/colorOutlineVariant"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="24dp"
-                    android:gravity="center_horizontal">
+                    android:padding="28dp">
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/profile_avatar"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/ic_avatar"
-                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Circle" />
+                    <!-- Avatar -->
+
+                    <FrameLayout
+                        android:layout_width="110dp"
+                        android:layout_height="110dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.15"
+                            android:background="@drawable/bg_circle_primary" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/profile_avatar"
+                            android:layout_width="88dp"
+                            android:layout_height="88dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_avatar"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Circle"
+                            app:strokeColor="?attr/colorPrimary"
+                            app:strokeWidth="2dp" />
+
+                    </FrameLayout>
+
+                    <!-- Name -->
 
                     <TextView
                         android:id="@+id/pro_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="User Name"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                        android:textColor="@color/on_surface"
+                        android:layout_marginTop="18dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Shelu Pandey"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
+
+                    <!-- Email -->
 
                     <TextView
                         android:id="@+id/pro_mail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="user@example.com"
-                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                        android:textColor="@color/on_surface_variant" />
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="pandey@gmail.com"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="14sp" />
+
+                    <!-- Mobile -->
 
                     <TextView
                         android:id="@+id/pro_mob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="+91 9876543210"
-                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                        android:textColor="@color/on_surface_variant" />
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="14sp" />
+
+                    <!-- Badge -->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/bg_verified"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="8dp">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_verified"
+                            app:tint="?attr/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Verified User"
+                            android:textColor="?attr/colorPrimary"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Stats -->
+
+            <LinearLayout
+                android:id="@+id/statsLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_header_card">
+
+                <!-- Trips -->
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/ic_route"
+                            app:tint="?attr/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="24"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Trips"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Rides -->
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/ic_group"
+                            app:tint="?attr/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="18"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Rides"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Rating -->
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/ic_star"
+                            app:tint="?attr/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="4.9"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Rating"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- Menu Card -->
+
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/profile_stats_card"
+                android:id="@+id/settingsCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:cardCornerRadius="28dp"
                 app:cardElevation="0dp"
-                app:strokeColor="@color/outline"
-                app:strokeWidth="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_header_card">
+                app:layout_constraintTop_toBottomOf="@id/statsLayout"
+                app:strokeColor="?attr/colorOutlineVariant"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:weightSum="3">
+                    android:orientation="vertical"
+                    android:paddingVertical="10dp">
+
+                    <!-- My Trips -->
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:minHeight="64dp"
+                        android:paddingHorizontal="18dp">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_route"
+                            app:tint="?attr/colorPrimary" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                            android:textColor="@color/primary"
-                            android:textStyle="bold" />
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="My Trips"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Trips"
-                            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                            android:textColor="@color/on_surface_variant" />
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_logout"
+                            app:tint="?attr/colorOnSurfaceVariant" />
+
                     </LinearLayout>
+
+                    <!-- Saved Rides -->
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:minHeight="64dp"
+                        android:paddingHorizontal="18dp">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_bookmark"
+                            app:tint="?attr/colorPrimary" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                            android:textColor="@color/primary"
-                            android:textStyle="bold" />
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Saved Rides"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rides"
-                            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                            android:textColor="@color/on_surface_variant" />
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_logout"
+                            app:tint="?attr/colorOnSurfaceVariant" />
+
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                            android:textColor="@color/primary"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rating"
-                            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                            android:textColor="@color/on_surface_variant" />
-                    </LinearLayout>
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
+
+            <!-- Logout -->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/pro_logout"
-                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Log Out"
                 android:textAllCaps="false"
+                android:textSize="15sp"
+                app:backgroundTint="?attr/colorErrorContainer"
+                app:cornerRadius="20dp"
                 app:icon="@drawable/ic_logout"
                 app:iconGravity="textStart"
+                app:iconPadding="10dp"
+                app:iconTint="?attr/colorError"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_stats_card" />
+                app:layout_constraintTop_toBottomOf="@id/settingsCard"
+                app:textColor="?attr/colorError" />
 
-            <com.google.android.material.button.MaterialButton
+            <!-- Delete -->
+
+            <TextView
                 android:id="@+id/pro_del"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Delete Account"
-                android:textAllCaps="false"
-                android:textColor="@color/error"
-                app:icon="@drawable/ic_delete"
-                app:iconTint="@color/error"
+                android:textColor="?attr/colorError"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pro_logout" />
+                app:layout_constraintTop_toBottomOf="@id/pro_logout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorSurfaceContainer"
+        app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
+        app:itemIconTint="@color/bottom_nav_selector"
+        app:itemTextColor="@color/bottom_nav_selector"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 

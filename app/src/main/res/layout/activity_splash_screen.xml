@@ -1,48 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface"
+    android:background="@drawable/gradient_background"
+    android:fitsSystemWindows="true"
     tools:context=".SplashScreen">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="288dp"
-        android:layout_height="152dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+
+
+
+    <View
+        android:id="@+id/bottomGlow"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:alpha="0.06"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Logo Container -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/logoCard"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="40dp"
+        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+        app:cardCornerRadius="42dp"
+        app:cardElevation="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/appTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintVertical_bias="0.42"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/icon_app"
-        android:contentDescription="@string/app_name"/>
+        app:strokeColor="?attr/colorOutlineVariant"
+        app:strokeWidth="1dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_app"
+            tools:ignore="ImageContrastCheck" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- App Name -->
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/poppins_bold"
+        android:letterSpacing="0.01"
+        android:text="@string/app_name"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoCard" />
+
+    <!-- Subtitle -->
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
         android:text="@string/your_journey_begins_here"
-        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-        android:textColor="@color/on_surface_variant"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/progressContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/appTitle" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:indeterminateTint="@color/primary"
+    <!-- Loader Container -->
+
+    <LinearLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/footerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:indeterminate="true"
+            app:indicatorColor="?attr/colorPrimary"
+            app:indicatorInset="4dp"
+            app:indicatorSize="52dp"
+            app:trackColor="?attr/colorSurfaceContainerHighest"
+            app:trackThickness="4dp" />
+
+        <TextView
+            android:id="@+id/loadingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Loading..."
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- Footer -->
+
+    <TextView
+        android:id="@+id/footerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:alpha="0.7"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Develop By Shelu Pandey"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
