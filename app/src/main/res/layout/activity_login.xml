@@ -217,7 +217,7 @@
                     app:iconPadding="10dp"
                     app:iconTint="?attr/colorOnPrimary"
                     app:rippleColor="?attr/colorPrimaryContainer"
-                    app:textColor="?attr/colorOnPrimary" />
+                    android:textColor="@color/primary" />
 
             </LinearLayout>
 

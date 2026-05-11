@@ -83,13 +83,13 @@ public class ProfileActivity extends AppCompatActivity {
         String name =
                 sharedPreferences.getString(
                         "user_name",
-                        "Akash Pandey"
+                        "Som Pandey"
                 );
 
         String email =
                 sharedPreferences.getString(
                         "user_email",
-                        "akashpandey@gmail.com"
+                        "sompandey@gmail.com"
                 );
 
         String mobile =

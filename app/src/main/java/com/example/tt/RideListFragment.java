@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tt.adapter.RideAdapter;
+import com.example.tt.RideModel;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -96,7 +99,7 @@ public class RideListFragment extends Fragment {
                         obj.getString("source"),
                         obj.getString("destination"),
                         obj.getString("amount"),
-                        obj.getString("seats")
+                        obj.getInt("seats")
                 );
 
                 list.add(model);
@@ -110,8 +113,7 @@ public class RideListFragment extends Fragment {
 
         RideAdapter adapter =
                 new RideAdapter(getContext(),
-                        list,
-                        false);
+                        list);
 
         recyclerView.setAdapter(adapter);
     }

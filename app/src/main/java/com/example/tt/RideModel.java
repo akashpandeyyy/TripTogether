@@ -9,18 +9,19 @@ public class RideModel {
     private final String amount;
     private final String seats;
 
-
     public RideModel(String userName,
                      String source,
                      String destination,
                      String amount,
-                     String seats) {
+                     int seats) {
 
         this.userName = userName;
         this.source = source;
         this.destination = destination;
         this.amount = amount;
-        this.seats = seats;
+
+        // FIX
+        this.seats = String.valueOf(seats);
     }
 
     public String getUserName() {
@@ -42,6 +43,4 @@ public class RideModel {
     public String getSeats() {
         return seats;
     }
-
-
 }
