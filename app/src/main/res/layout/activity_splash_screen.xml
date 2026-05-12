@@ -9,135 +9,220 @@
     android:background="@drawable/gradient_background"
     android:fitsSystemWindows="true"
     tools:context=".SplashScreen">
+    <!-- Add this to your activity_splash_screen.xml right after the root ConstraintLayout -->
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface"
+        android:visibility="gone" />
 
-
-
+    <!-- Animated Background Elements -->
+    <View
+        android:id="@+id/bgGlow1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:alpha="0.08"
+        android:background="@drawable/glow_circle"
+        app:layout_constraintBottom_toTopOf="@+id/logoCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/bottomGlow"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:id="@+id/bgGlow2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:alpha="0.06"
+        android:background="@drawable/glow_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoCard" />
 
-    <!-- Logo Container -->
-
+    <!-- Logo Container with Ripple Effect -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/logoCard"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:focusable="true"
         app:cardBackgroundColor="?attr/colorSurfaceContainer"
-        app:cardCornerRadius="42dp"
-        app:cardElevation="12dp"
+        app:cardCornerRadius="48dp"
+        app:cardElevation="16dp"
         app:layout_constraintBottom_toTopOf="@+id/appTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42"
+        app:layout_constraintVertical_bias="0.40"
         app:layout_constraintVertical_chainStyle="packed"
-        app:strokeColor="?attr/colorOutlineVariant"
-        app:strokeWidth="1dp">
+        app:rippleColor="?attr/colorPrimary"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="2dp">
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/icon_app"
-            tools:ignore="ImageContrastCheck" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_app"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
+
+            <!-- Pulsing Ring Animation -->
+            <View
+                android:id="@+id/pulseRing"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/pulse_ring"
+                app:layout_constraintBottom_toBottomOf="@+id/logo"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="@+id/logo"
+                app:layout_constraintStart_toStartOf="@+id/logo"
+                app:layout_constraintTop_toTopOf="@+id/logo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- App Name -->
-
+    <!-- App Name with Gradient Text -->
     <TextView
         android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/poppins_bold"
-        android:letterSpacing="0.01"
+        android:fontFamily="@font/lobster_regular"
+        android:letterSpacing="0.02"
         android:text="@string/app_name"
         android:textColor="?attr/colorOnSurface"
-        android:textSize="32sp"
+        android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/tagline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoCard" />
 
-    <!-- Subtitle -->
-
+    <!-- Stylish Tagline -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tagline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="12dp"
+        android:alpha="0.85"
+        android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:text="@string/your_journey_begins_here"
-        android:textColor="?attr/colorOnSurfaceVariant"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/progressContainer"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle" />
 
-    <!-- Loader Container -->
+    <!-- Decorative Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="20dp"
+        android:alpha="0.5"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/progressContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagline" />
 
+    <!-- Modern Loader Container -->
     <LinearLayout
         android:id="@+id/progressContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="32dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/footerText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/divider">
 
+        <!-- Animated Circular Progress -->
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progressBar"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:indeterminate="true"
             app:indicatorColor="?attr/colorPrimary"
-            app:indicatorInset="4dp"
-            app:indicatorSize="52dp"
+            app:indicatorInset="0dp"
+            app:indicatorSize="56dp"
             app:trackColor="?attr/colorSurfaceContainerHighest"
-            app:trackThickness="4dp" />
+            app:trackThickness="5dp" />
 
+        <!-- Loading Text with Animation -->
         <TextView
             android:id="@+id/loadingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="16dp"
+            android:alpha="0.9"
             android:fontFamily="@font/poppins_medium"
-            android:text="Loading..."
+            android:letterSpacing="0.03"
+            android:text="Loading"
             android:textColor="?attr/colorOnSurfaceVariant"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
+
+        <!-- Animated Dots -->
+        <TextView
+            android:id="@+id/loadingDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..."
+            android:textColor="?attr/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <!-- Footer -->
-
-    <TextView
+    <!-- Enhanced Footer -->
+    <LinearLayout
         android:id="@+id/footerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:alpha="0.7"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Develop By Shelu Pandey"
-        android:textColor="?attr/colorOnSurfaceVariant"
-        android:textSize="12sp"
+        android:layout_marginBottom="28dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.6"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Developed by"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:alpha="0.5"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Shelu Pandey"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="11sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

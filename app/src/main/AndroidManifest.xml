@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,69 +18,52 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RideSharing"
         tools:targetApi="31">
-
+        <activity
+            android:name=".RideDetailActivity"
+            android:exported="false" />
         <!-- Splash Screen -->
         <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.RideSharing.Splash">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-        <!-- Login/Register -->
+        </activity> <!-- Login/Register -->
         <activity
             android:name=".LoginRegisterActivity"
             android:exported="false"
-            android:parentActivityName=".SplashScreen" />
-
-        <!-- Login -->
+            android:parentActivityName=".SplashScreen" /> <!-- Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:parentActivityName=".LoginRegisterActivity" />
-
-        <!-- Register -->
+            android:parentActivityName=".LoginRegisterActivity" /> <!-- Register -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:parentActivityName=".LoginRegisterActivity" />
-
-        <!-- Home -->
+            android:parentActivityName=".LoginRegisterActivity" /> <!-- Home -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:parentActivityName=".LoginActivity" />
-
-        <!-- Post Trip -->
+            android:parentActivityName=".LoginActivity" /> <!-- Post Trip -->
         <activity
             android:name=".PostTripActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
-
-        <!-- Search -->
+            android:parentActivityName=".MainActivity" /> <!-- Search -->
         <activity
             android:name=".SearchActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
-
-        <!-- My Rides -->
+            android:parentActivityName=".MainActivity" /> <!-- My Rides -->
         <activity
             android:name=".MyRidesActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
-
-        <!-- Profile -->
+            android:parentActivityName=".MainActivity" /> <!-- Profile -->
         <activity
             android:name=".ProfileActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-
     </application>
 
 </manifest>

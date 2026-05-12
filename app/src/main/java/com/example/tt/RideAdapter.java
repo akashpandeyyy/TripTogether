@@ -1,85 +1,117 @@
 package com.example.tt;
 
-import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class RideAdapter extends RecyclerView.Adapter<RideAdapter.ViewHolder> {
+public class RideAdapter extends RecyclerView.Adapter<RideAdapter.RideViewHolder> {
 
-    Context context;
-    ArrayList<RideModel> list;
-    OnBookClickListener listener;
+    private List<RideModel> rideList;
+    private OnRideClickListener listener;
+    private android.content.Context context;
 
-    public interface OnBookClickListener {
-        void onBookClick(RideModel ride);
+    public interface OnRideClickListener {
+        void onRideClick(RideModel ride);
     }
 
-    public RideAdapter(Context context,
-                       ArrayList<RideModel> list,
-                       OnBookClickListener listener) {
-
+    public RideAdapter(android.content.Context context, List<RideModel> rideList, OnRideClickListener listener) {
         this.context = context;
-        this.list = list;
+        this.rideList = rideList;
         this.listener = listener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(context)
+    public RideViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_ride_result, parent, false);
-
-        return new ViewHolder(view);
+        return new RideViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RideViewHolder holder, int position) {
+        RideModel ride = rideList.get(position);
 
-        RideModel ride = list.get(position);
+        holder.driverName.setText(ride.getUserName());
+        holder.carInfo.setText(ride.getCarModel());
 
-        holder.userName.setText(ride.getUserName());
-        holder.source.setText(ride.getSource());
-        holder.destination.setText(ride.getDestination());
-        holder.amount.setText("₹" + ride.getAmount());
-        holder.seats.setText(ride.getSeats() + " Seats");
+        // Handle rating - check if exists in layout
+        if (holder.rating != null) {
+            holder.rating.setText(ride.getRating());
+        }
 
-        holder.bookBtn.setOnClickListener(v -> {
+        holder.timeText.setText(ride.getTime());
+        holder.fromLocation.setText(ride.getSource());
+        holder.toLocation.setText(ride.getDestination());
+        holder.priceText.setText("₹" + ride.getAmount());
+        holder.seatsText.setText(ride.getSeats() + " seats");
+
+        // Calculate total price (price per seat * number of seats)
+        int pricePerSeat = Integer.parseInt(ride.getAmount());
+        int seatCount = Integer.parseInt(ride.getSeats());
+        int totalPrice = pricePerSeat * seatCount;
+        holder.totalPrice.setText("₹" + totalPrice);
+
+        holder.bookButton.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onBookClick(ride);
+                listener.onRideClick(ride);
+            }
+        });
+
+        holder.cardView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onRideClick(ride);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return rideList.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class RideViewHolder extends RecyclerView.ViewHolder {
+        public TextView driverName;
+        public TextView carInfo;
+        public TextView rating;
+        public TextView timeText;
+        public TextView fromLocation;
+        public TextView toLocation;
+        public TextView priceText;
+        public TextView seatsText;
+        public TextView totalPrice;
+        public MaterialButton bookButton;
+        public CardView cardView;
+        ImageView carIcon;
 
-        TextView userName, source, destination, amount, seats;
-        MaterialButton bookBtn;
-
-        public ViewHolder(@NonNull View itemView) {
+        public RideViewHolder(@NonNull View itemView) {
             super(itemView);
+            driverName = itemView.findViewById(R.id.driverName);
+            carInfo = itemView.findViewById(R.id.carInfo);
 
-            userName = itemView.findViewById(R.id.user_name);
-            source = itemView.findViewById(R.id.trip_source);
-            destination = itemView.findViewById(R.id.trip_destination);
-            amount = itemView.findViewById(R.id.trip_amount);
-            seats = itemView.findViewById(R.id.trip_seats);
+            // Try to find rating, if not present, it will be null
+            rating = itemView.findViewById(R.id.rating);
 
-            bookBtn = itemView.findViewById(R.id.btn_book);
+            timeText = itemView.findViewById(R.id.timeText);
+            fromLocation = itemView.findViewById(R.id.fromLocation);
+            toLocation = itemView.findViewById(R.id.toLocation);
+            priceText = itemView.findViewById(R.id.priceText);
+            seatsText = itemView.findViewById(R.id.seatsText);
+            totalPrice = itemView.findViewById(R.id.totalPrice);
+            bookButton = itemView.findViewById(R.id.bookButton);
+            cardView = itemView.findViewById(R.id.rideCard);
+            carIcon = itemView.findViewById(R.id.carIcon);
         }
     }
 }
